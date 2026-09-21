@@ -15,37 +15,38 @@
 <html>
 <head>
   <title>Annual Movie Rewatch</title>
-  <!-- TODO B.1: tambahkan dua baris meta di bawah ini:
-       <meta charset="...">
-       <meta name="viewport" content="...">  -->
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <html lang="id">
 
 </head>
 <body>
-
-  <!-- TODO C.1: buat <header> di sini.
-       Isinya: satu <h1> berisi judul halaman Anda.
-       Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
 <nav>
      <h1>Annual Movie Rewatch</h1>
      <a href="#section1">Silent Voice</a>
      <a href="#section2">Marry me!</a>
      <a href="#section3">Silent Love</a>
 </nav>
-  <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
-       Di dalamnya ada 2 <section>, masing-masing punya <h2> sendiri. -->
 <main>
      
     <section id="section1">
       <h2>Silent Voice</h2>
-      <img src="A SILENT VOICE.jpg" alt="Silent Voice" width="300">
+         <figure>
+            <img src="A SILENT VOICE.jpg" 
+                alt="Poster film anime Silent Voice yang menampilkan karakter Shoya Ishida dan Shoko Nishimiya" 
+                width="300" height="420" loading="lazy">
+            <figcaption>Poster resmi film A Silent Voice</figcaption>
+          </figure>
       <p>Silent Voice adalah film anime Jepang yang dirilis pada tahun 2016. Film ini diadaptasi dari manga dengan judul yang sama karya Yoshitoki Ōima. Cerita ini mengisahkan tentang seorang anak laki-laki bernama Shoya Ishida yang menindas seorang gadis tuli bernama Shoko Nishimiya saat mereka masih di sekolah dasar. Setelah beberapa tahun, Shoya merasa bersalah atas tindakannya dan berusaha untuk menebus kesalahannya dengan mendekati Shoko dan membangun kembali hubungan mereka.</p>
     </section>
-
     <section id="section2">
       <h2>Marry me!</h2>
+          <figure>
+            <img src="Marry Me!.jpg" 
+               alt="Poster drama Jepang Marry Me yang menampilkan karakter Shin Akiyasu dan Himari Sawamoto tersenyum saling berdekatan mengenakan pakaian pengantin kasual" 
+               width="420" height="450" loading="lazy">
+           <figcaption>Poster resmi film komedi romantis Marry Me (2022)</figcaption>
+          </figure>
       <p>Marry Me! adalah film komedi romantis Amerika Serikat yang dirilis pada tahun 2022. Film ini dibintangi oleh Jennifer Lopez dan Owen Wilson. Ceritanya mengikuti seorang penyanyi terkenal yang memutuskan untuk menikahi seorang penggemar biasa setelah mengetahui bahwa tunangannya berselingkuh dengannya. Film ini mengeksplorasi tema cinta, pengampunan, dan menemukan kebahagiaan dalam cara yang tidak terduga.</p>
     </section>
 
@@ -54,8 +55,6 @@
       <p>Silent Love adalah film drama romantis yang menceritakan kisah cinta antara dua individu yang menghadapi tantangan komunikasi karena salah satu dari mereka memiliki gangguan pendengaran. Film ini menyoroti pentingnya empati, pengertian, dan kekuatan cinta dalam mengatasi hambatan komunikasi. Cerita ini mengajarkan penonton tentang nilai-nilai hubungan yang tulus dan bagaimana cinta dapat melampaui batasan fisik.</p>
     </section>
 </main>
-    <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
-         Wajib ada: <caption>, <thead>, <th scope="col">, dan minimal 3 baris data. -->
      <section id="section1">
       <h2>Data Film</h2>
       <table>
@@ -86,10 +85,6 @@
         </tbody>
       </table>
     </section>
-
-    <!-- TODO E.1: di dalam section kedua, buat form Anda.
-         Wajib ada: minimal 3 kolom, setiap kolom punya <label for> yang
-         cocok dengan id input-nya, dan satu atribut validasi. -->
 <section id="section2">
       <h2>Formulir Kontak</h2>
       <form>
@@ -105,8 +100,6 @@
         <input type="submit" value="Kirim">
       </form>
     </section>
-  <!-- TODO C.3: buat <footer> di sini.
-       Isinya: nama Anda, NIM Anda, dan tahun. -->
 <footer>
     <p>Nama: Hafidz Taufiqurrahman</p>
     <p>NIM: 25523049</p>
