@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+  KERANGKA AWAL — Halaman Profil Saya
+  PABW 2026/2027 · Pertemuan 3
+
+  Cara pakai:
+  1. Salin berkas ini, ganti nama menjadi profil.html
+  2. Ganti setiap tulisan TODO dengan isi milik Anda SENDIRI
+  3. Simpan, lalu buka di peramban (F5 untuk memuat ulang)
+  4. Kerjakan berurutan mengikuti Lembar B, C, D, dan E pada worksheet
+
+  Jangan menghapus komentar TODO sebelum bagian itu Anda kerjakan —
+  komentar itu adalah daftar periksa Anda sendiri.
+-->
+<html>
+<head>
+  <title>Annual Movie Rewatch</title>
+  <!-- TODO B.1: tambahkan dua baris meta di bawah ini:
+       <meta charset="...">
+       <meta name="viewport" content="...">  -->
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+  <!-- TODO C.1: buat <header> di sini.
+       Isinya: satu <h1> berisi judul halaman Anda.
+       Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
+<nav>
+     <h1>Annual Movie Rewatch</h1>
+     <a href="#section1">Silent Voice</a>
+     <a href="#section2">Marry me!</a>
+     <a href="#section3">Silent Love</a>
+</nav>
+  <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
+       Di dalamnya ada 2 <section>, masing-masing punya <h2> sendiri. -->
+<main>
+     
+    <section id="section1">
+      <h2>Silent Voice</h2>
+      <p>Silent Voice adalah film anime Jepang yang dirilis pada tahun 2016. Film ini diadaptasi dari manga dengan judul yang sama karya Yoshitoki Ōima. Cerita ini mengisahkan tentang seorang anak laki-laki bernama Shoya Ishida yang menindas seorang gadis tuli bernama Shoko Nishimiya saat mereka masih di sekolah dasar. Setelah beberapa tahun, Shoya merasa bersalah atas tindakannya dan berusaha untuk menebus kesalahannya dengan mendekati Shoko dan membangun kembali hubungan mereka.</p>
+    </section>
+
+    <section id="section2">
+      <h2>Marry me!</h2>
+      <p>Marry Me! adalah film komedi romantis Amerika Serikat yang dirilis pada tahun 2022. Film ini dibintangi oleh Jennifer Lopez dan Owen Wilson. Ceritanya mengikuti seorang penyanyi terkenal yang memutuskan untuk menikahi seorang penggemar biasa setelah mengetahui bahwa tunangannya berselingkuh dengannya. Film ini mengeksplorasi tema cinta, pengampunan, dan menemukan kebahagiaan dalam cara yang tidak terduga.</p>
+    </section>
+
+    <section id="section3">
+      <h2>Silent Love</h2>
+      <p>Silent Love adalah film drama romantis yang menceritakan kisah cinta antara dua individu yang menghadapi tantangan komunikasi karena salah satu dari mereka memiliki gangguan pendengaran. Film ini menyoroti pentingnya empati, pengertian, dan kekuatan cinta dalam mengatasi hambatan komunikasi. Cerita ini mengajarkan penonton tentang nilai-nilai hubungan yang tulus dan bagaimana cinta dapat melampaui batasan fisik.</p>
+    </section>
+</main>
+    <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
+         Wajib ada: <caption>, <thead>, <th scope="col">, dan minimal 3 baris data. -->
+     <section id="section1">
+      <h2>Data Film</h2>
+      <table>
+        <caption>Daftar Film Rewatch</caption>
+        <thead>
+          <tr>
+            <th scope="col">Judul</th>
+            <th scope="col">Tahun Rilis</th>
+            <th scope="col">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Silent Voice</td>
+            <td>2016</td>
+            <td>Drama, Romance</td>
+          </tr>
+          <tr>
+            <td>Marry Me!</td>
+            <td>2022</td>
+            <td>Comedy, Romance</td>
+          </tr>
+          <tr>
+            <td>Silent Love</td>
+            <td>2020</td>
+            <td>Drama, Romance</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TODO E.1: di dalam section kedua, buat form Anda.
+         Wajib ada: minimal 3 kolom, setiap kolom punya <label for> yang
+         cocok dengan id input-nya, dan satu atribut validasi. -->
+<section id="section2">
+      <h2>Formulir Kontak</h2>
+      <form>
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <input type="submit" value="Kirim">
+      </form>
+    </section>
+  <!-- TODO C.3: buat <footer> di sini.
+       Isinya: nama Anda, NIM Anda, dan tahun. -->
+<footer>
+    <p>Nama: Hafidz Taufiqurrahman</p>
+    <p>NIM: 25523049</p>
+    <p>Tahun: 2026</p>
+  </footer>
+</body>
+</html>
