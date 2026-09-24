@@ -1,52 +1,30 @@
-/* LAPIS 1 — Primitif: Nilai mentah (Bukan Navy) */
 :root {
-  --teal-900: #064e3b;
-  --teal-700: #0f766e;
-  --teal-500: #14b8a6;
-  --teal-400: #2dd4bf;
+  /* Lapis 1 - Primitif */
   --teal-300: #5eead4;
+  --teal-400: #2dd4bf;
+  --teal-700: #0f766e;
+  --dark-bg:  #0b1514;
+  --dark-surf:#142321;
+  --dark-bord:#243d39;
+  --text-main:#e6f1ee;
 
-  --slate-50:  #f8fafc;
-  --slate-100: #f1f5f9;
-  --slate-200: #e2e8f0;
-  --slate-300: #cbd5e1;
-  --slate-700: #334155;
-  --slate-800: #1e293b;
-  --slate-900: #0f172a;
-
-  --rose-600:  #be123c;
-  --rose-400:  #fb7185;
-
-  /* Spasi (Grid 4/8-point) */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-6: 1.5rem;
-  --section-gap: 2rem;
 
-  /* Sudut & Efek */
   --radius-md: 0.5rem;
   --radius-full: 9999px;
-  --shadow-1: 0 4px 12px rgba(15, 118, 110, 0.08);
-
-  /* Tipografi */
-  --text-sm: 0.875rem;
-  --text-md: 1rem;
-  --text-xl: 1.5rem;
-  --text-3xl: 2.25rem;
+  --shadow-1: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* LAPIS 2 — Semantik: Peran dalam UI */
 :root {
-  --color-bg:       #f4f6f5;
-  --color-fg:       #13221c;
-  --color-surface:  #ffffff;
-  --color-border:   var(--slate-300);
-  --color-primary:  var(--teal-700);
-  --color-danger:   var(--rose-600);
-  --color-focus:    var(--teal-500);
-
-  --card-pad:       var(--space-4);
-  --section-gap:    var(--space-6);
+  /* Lapis 2 - Semantik (Default Gelap) */
+  --color-bg:      var(--dark-bg);
+  --color-fg:      var(--text-main);
+  --color-surface: var(--dark-surf);
+  --color-border:  var(--dark-bord);
+  --color-primary: var(--teal-400);
+  --color-focus:   var(--teal-300);
 }
