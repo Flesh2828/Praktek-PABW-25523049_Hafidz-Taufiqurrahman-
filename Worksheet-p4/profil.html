@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  KERANGKA AWAL — Halaman Profil Saya
+  PABW 2026/2027 · Pertemuan 3
+
+  Cara pakai:
+  1. Salin berkas ini, ganti nama menjadi profil.html
+  2. Ganti setiap tulisan TODO dengan isi milik Anda SENDIRI
+  3. Simpan, lalu buka di peramban (F5 untuk memuat ulang)
+  4. Kerjakan berurutan mengikuti Lembar B, C, D, dan E pada worksheet
+
+  Jangan menghapus komentar TODO sebelum bagian itu Anda kerjakan —
+  komentar itu adalah daftar periksa Anda sendiri.
+-->
+<html>
+<head>
+  <title>Annual Movie Rewatch</title>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <html lang="id">
+       <link rel="stylesheet" href="tokens.css">
+        <link rel="stylesheet" href="base.css">
+        <link rel="stylesheet" href="layout.css">
+        <link rel="stylesheet" href="komponen.css">
+        <link rel="stylesheet" href="tema.css">
+
+</head>
+<body>
+<header>
+  <h1>Annual Movie Rewatch</h1>
+  <nav>
+    <a href="#silent-voice">Silent Voice</a>
+    <a href="#marry-me">Marry me!</a>
+    <a href="#silent-love">Silent Love</a>
+  </nav>
+</header>
+<main>
+     
+    <section id="section1">
+        <div class="katalog">
+        <article class="kartu" id="silent-voice">
+      <h2>Silent Voice</h2>
+         <figure>
+            <img src="/Worksheet-p3/A SILENT VOICE.jpg" 
+                alt="Poster film anime Silent Voice yang menampilkan karakter Shoya Ishida dan Shoko Nishimiya" 
+                width="300" height="420" loading="lazy">
+            <figcaption>Poster resmi film A Silent Voice</figcaption>
+          </figure>
+      <p>Silent Voice adalah film anime Jepang yang dirilis pada tahun 2016. Film ini diadaptasi dari manga dengan judul yang sama karya Yoshitoki Ōima. Cerita ini mengisahkan tentang seorang anak laki-laki bernama Shoya Ishida yang menindas seorang gadis tuli bernama Shoko Nishimiya saat mereka masih di sekolah dasar. Setelah beberapa tahun, Shoya merasa bersalah atas tindakannya dan berusaha untuk menebus kesalahannya dengan mendekati Shoko dan membangun kembali hubungan mereka.</p>
+    </article>
+    </div>
+    </section>
+    <section id="section2">
+        <div class="katalog">
+        <article class="kartu" id="marry-me">
+      <h2>Marry me!</h2>
+          <figure>
+            <img src="/Worksheet-p3/Marry Me!.jpg" 
+               alt="Poster drama Jepang Marry Me yang menampilkan karakter Shin Akiyasu dan Himari Sawamoto tersenyum saling berdekatan mengenakan pakaian pengantin kasual" 
+               width="420" height="450" loading="lazy">
+           <figcaption>Poster resmi film komedi romantis Marry Me (2022)</figcaption>
+          </figure>
+      <p>Marry Me! adalah film komedi romantis Amerika Serikat yang dirilis pada tahun 2022. Film ini dibintangi oleh Jennifer Lopez dan Owen Wilson. Ceritanya mengikuti seorang penyanyi terkenal yang memutuskan untuk menikahi seorang penggemar biasa setelah mengetahui bahwa tunangannya berselingkuh dengannya. Film ini mengeksplorasi tema cinta, pengampunan, dan menemukan kebahagiaan dalam cara yang tidak terduga.</p>
+    </article>
+    </div>
+    </section>
+    <section id="section3">
+    <div class="katalog">
+      <article class="kartu" id="silent-love">
+        <h2>Silent Love</h2>
+        <figure>
+          <img src="/Worksheet-p3/Silent Love.jpg" 
+               alt="Poster film drama romantis Silent Love yang menampilkan dua karakter utama saling berhadapan" 
+               width="420" height="450" loading="lazy">
+          <figcaption>Poster resmi film drama romantis Silent Love</figcaption>
+        </figure>
+        <p>Silent Love adalah film drama romantis yang menceritakan kisah cinta antara dua individu yang menghadapi tantangan komunikasi karena salah satu dari mereka memiliki gangguan pendengaran. Film ini menyoroti pentingnya empati, pengertian, dan kekuatan cinta dalam mengatasi hambatan komunikasi. Cerita ini mengajarkan penonton tentang nilai-nilai hubungan yang tulus dan bagaimana cinta dapat melampaui batasan fisik.</p>
+      </article>
+    </div>
+    </section>
+</main>
+     <section id="section1">
+      <h2>Data Film</h2>
+      <table>
+        <caption>Daftar Film Rewatch</caption>
+        <thead>
+          <tr>
+            <th scope="col">Judul</th>
+            <th scope="col">Tahun Rilis</th>
+            <th scope="col">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Silent Voice</td>
+            <td>2016</td>
+            <td>Drama, Romance</td>
+          </tr>
+          <tr>
+            <td>Marry Me!</td>
+            <td>2022</td>
+            <td>Comedy, Romance</td>
+          </tr>
+          <tr>
+            <td>Silent Love</td>
+            <td>2020</td>
+            <td>Drama, Romance</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+<section id="section2">
+      <h2>Formulir Kontak</h2>
+      <form>
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <input type="submit" value="Kirim">
+      </form>
+    </section>
+</div>
+<footer>
+    <p>Nama: Hafidz Taufiqurrahman</p>
+    <p>NIM: 25523049</p>
+    <p>Tahun: 2026</p>
+  </footer>
+</body>
+</html>
