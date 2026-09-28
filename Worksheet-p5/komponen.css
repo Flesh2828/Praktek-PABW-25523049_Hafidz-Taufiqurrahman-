@@ -1,4 +1,116 @@
-/* Layout Form */
+/* ===================================================
+   KOMPONEN.CSS - Galeri, Kartu, Form, dan Tabel
+   =================================================== */
+
+/* Galeri Adaptif Tanpa Media Query (Lembar C.1) */
+.galeri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+/* Kotak Kartu Film (Lembar C.2 & E.1) */
+.kartu {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-4);
+  min-height: 14rem;
+  min-width: 0; /* Mencegah kolom terdorong keluar (Lembar E.2) */
+}
+
+/* Penempatan Khusus (Lembar D.1) */
+.sorotan {
+  grid-column: span 2;
+}
+
+.papan {
+  grid-row: span 2;
+}
+
+/* Poster Gambar: Proporsional & Rata */
+.kartu figure {
+  margin: 0 0 var(--space-3) 0;
+  width: 100%;
+}
+
+.kartu img {
+  width: 100%;
+  height: 240px;          /* Mengunci tinggi agar seragam */
+  object-fit: cover;      /* Menjaga rasio foto tanpa gepeng */
+  border-radius: calc(var(--radius-md) - 2px);
+  display: block;
+}
+
+.kartu figcaption {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: var(--space-1);
+}
+
+/* Isi Teks Kartu (Lembar E.2) */
+.kartu__isi {
+  flex: 1;                /* Mendorong footer kartu ke dasar */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kartu__judul {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  overflow-wrap: anywhere; /* Membungkus teks panjang */
+}
+
+.kartu__isi p {
+  line-height: 1.6;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+/* Kaki Kartu (Lembar C.2) */
+.kartu__kaki {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;       /* Menempel rapi di bawah */
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+/* Tabel di Sidebar */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  margin-top: var(--space-2);
+}
+
+th, td {
+  padding: var(--space-2);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+caption {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  text-align: left;
+}
+
+/* Layout Form Kontak */
+.kontak {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -26,7 +138,7 @@ input, select, textarea {
   color: var(--color-fg);
 }
 
-/* Validasi Interaktif :user-invalid */
+/* Validasi Interaktif */
 input:user-invalid,
 textarea:user-invalid {
   border-color: var(--color-danger);
