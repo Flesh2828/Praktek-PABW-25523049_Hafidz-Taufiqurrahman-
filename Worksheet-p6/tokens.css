@@ -1,0 +1,30 @@
+:root {
+  /* Lapis 1 - Primitif */
+  --teal-300: #5eead4;
+  --teal-400: #2dd4bf;
+  --teal-700: #0f766e;
+  --dark-bg:  #0b1514;
+  --dark-surf:#142321;
+  --dark-bord:#243d39;
+  --text-main:#e6f1ee;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+
+  --radius-md: 0.5rem;
+  --radius-full: 9999px;
+  --shadow-1: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+:root {
+  /* Lapis 2 - Semantik (Default Gelap) */
+  --color-bg:      var(--dark-bg);
+  --color-fg:      var(--text-main);
+  --color-surface: var(--dark-surf);
+  --color-border:  var(--dark-bord);
+  --color-primary: var(--teal-400);
+  --color-focus:   var(--teal-300);
+}
