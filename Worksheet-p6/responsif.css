@@ -1,32 +1,142 @@
-/* dasar: berlaku di semua lebar */
-.content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+/* ===================================================
+   1. DASAR UMUM (Universal Resets & Media Element)
+   =================================================== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+.table-wrap {
+  overflow-x: auto;
 }
 
-/* tablet: galeri dua kolom */
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+* {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ===================================================
+   2. MOBILE FIRST DEFAULT (Layar Kecil / HP < 48rem)
+   =================================================== */
+/* Header & Navigasi bertumpuk rapi */
+header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.navbar {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+nav ul {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Layout utama (.isi) bertumpuk 1 kolom vertikal */
+.isi {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: var(--space-3) !important;
+  gap: var(--space-4) !important;
+}
+
+.sisi,
+.utama {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Wadah kartu film berjejer 1 kolom ke bawah */
+.grid,
+.utama > section,
+.daftar-film {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--space-4) !important;
+  width: 100% !important;
+}
+
+article,
+.card {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ===================================================
+   3. TABLET (>= 48rem / 768px)
+   =================================================== */
 @media (min-width: 48rem) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  header {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .grid,
+  .utama > section,
+  .daftar-film {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
-/* desktop: sidebar bersanding dengan konten */
+/* ===================================================
+   4. DESKTOP (>= 60rem / 960px)
+   =================================================== */
 @media (min-width: 60rem) {
-  .content { grid-template-columns: 16rem 1fr; }
-  .grid { grid-template-columns: repeat(3, 1fr); }
+  .isi {
+    display: grid !important;
+    grid-template-columns: 18rem 1fr !important;
+    grid-template-areas:
+      "sisi utama"
+      "sisi utama" !important;
+    padding: var(--space-6) !important;
+    gap: var(--space-6) !important;
+  }
+
+  .sisi {
+    grid-area: sisi;
+  }
+
+  .utama {
+    grid-area: utama;
+  }
+
+  .grid,
+  .utama > section,
+  .daftar-film {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
+/* Menargetkan langsung semua elemen anak di dalam .isi dan .utama */
+@media (max-width: 48rem) {
+  .isi,
+  .isi > *,
+  .utama,
+  .utama > * {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
-/* gambar tidak melebihi wadahnya */
-img { max-width: 100%; height: auto; }
-
-/* tabel lebar dapat digulir sendiri */
-.table-wrap { overflow-x: auto; }
-
-/* teks mengikuti ukuran huruf pengguna */
-p { font-size: 1rem; line-height: 1.6; }
+  /* Pastikan setiap kartu dan artikel mengambil baris tersendiri */
+  article,
+  .card,
+  .film {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-shrink: 0 !important;
+  }
+}
