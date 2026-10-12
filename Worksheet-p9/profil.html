@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annual Movie Rewatch</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="komponen.css">
+  <link rel="stylesheet" href="tema.css">
+  <link rel="stylesheet" href="responsif.css">
+</head>
+
+<body>
+  <input type="checkbox" id="tema" class="pengalih-tema">
+  <div class="page">
+
+    <!-- Baris 1: Header / Navbar -->
+    <header class="header">
+      <nav class="navbar">
+        <h1>Annual Movie Rewatch</h1>
+        <ul class="nav-links">
+          <li><a href="#silent-voice">Silent Voice</a></li>
+          <li><a href="#marry-me">Marry me!</a></li>
+          <li><a href="#silent-love">Silent Love</a></li>
+        </ul>
+        <label for="tema" class="tombol-tema">🌙 Ganti Tema</label>
+      </nav>
+    </header>
+
+    <main class="isi">
+      <aside class="sisi">
+        <section class="section-sidebar">
+          <h2>Data Film</h2>
+          <table>
+            <caption>Daftar Film Rewatch</caption>
+            <thead>
+              <tr>
+                <th scope="col">Judul</th>
+                <th scope="col">Tahun</th>
+                <th scope="col">Genre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Silent Voice</td>
+                <td>2016</td>
+                <td>Drama, Romance</td>
+              </tr>
+              <tr>
+                <td>Marry Me!</td>
+                <td>2022</td>
+                <td>Comedy, Romance</td>
+              </tr>
+              <tr>
+                <td>Silent Love</td>
+                <td>2020</td>
+                <td>Drama, Romance</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </aside>
+
+      <section class="utama">
+        <!-- Baris Tombol Filter -->
+        <div id="filter" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
+          <button type="button" data-genre="Semua" class="tombol-filter aktif">Semua</button>
+          <button type="button" data-genre="Drama" class="tombol-filter">Drama</button>
+          <button type="button" data-genre="Comedy" class="tombol-filter">Comedy</button>
+          <button type="button" data-genre="Belum" class="tombol-filter">Belum Ditonton</button>
+        </div>
+
+        <!-- Wadah Tunggal Galeri (Diisi dinamis oleh js/dom.js) -->
+        <div class="galeri" id="daftar-film"></div>
+
+        <!-- Pesan Keadaan Kosong bila Filter Tidak Menemukan Film -->
+        <p id="pesan-kosong" hidden style="color: var(--color-border); font-style: italic; margin-top: var(--space-3);">
+          Tidak ada film dalam kategori ini.
+        </p>
+
+        <!-- Formulir Kontak di bawah Galeri -->
+        <section class="kontak">
+          <h2>Formulir Kontak</h2>
+          <form id="form-kontak" novalidate>
+            <div class="form-kolom">
+              <label for="name">Nama:</label>
+              <input type="text" id="name" name="name" required>
+              <span class="pesan-galat" id="error-name" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-kolom">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+              <span class="pesan-galat" id="error-email" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-kolom">
+              <label for="message">Pesan:</label>
+              <textarea id="message" name="message" required></textarea>
+              <span class="pesan-galat" id="error-message" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <button type="submit" id="tombol-kirim" disabled>Kirim</button>
+          </form>
+        </section>
+      </section> <!-- /utama -->
+
+    </main>
+
+    <footer class="kaki">
+      <p>Nama: Hafidz Taufiqurrahman &nbsp; NIM: 25523049 &nbsp; Tahun: 2026</p>
+    </footer>
+  </div> 
+
+  <!-- Penghubung Script Modular Sesuai Ketetapan P9 -->
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/dom.js"></script>
+</body>
+</html>
