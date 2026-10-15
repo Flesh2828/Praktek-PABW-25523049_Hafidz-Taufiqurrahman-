@@ -35,44 +35,6 @@ console.log("\n--- LEMBAR C: Dua Fungsi Murni ---");
 console.log("Hasil buatPerkenalan:", buatPerkenalan(profilPengguna));
 console.log("Hasil formatGenre:", formatGenre(profilPengguna.genreFavorit));
 
-
-// Array of Object: Menampung data film sesuai profil.html
-export const daftarFilm = [
-  {
-    id: "silent-voice",
-    judul: "Silent Voice",
-    tahun: 2016,
-    genre: "Drama, Romance",
-    sudahDitonton: true,
-    rating: 9.0,
-    gambar: "/Worksheet-p3/A SILENT VOICE.jpg",
-    alt: "Poster film anime Silent Voice",
-    ringkasan: "Cerita tentang Shoya Ishida yang menindas gadis tuli Shoko Nishimiya saat SD, dan berusaha menebus kesalahannya saat SMA."
-  },
-  {
-    id: "marry-me",
-    judul: "Marry me!",
-    tahun: 2022,
-    genre: "Comedy, Romance",
-    sudahDitonton: true,
-    rating: 7.5,
-    gambar: "/Worksheet-p3/Marry Me!.jpg",
-    alt: "Poster film komedi romantis Marry Me",
-    ringkasan: "Mengikuti penyanyi terkenal yang memutuskan menikahi seorang penggemar biasa setelah mengetahui tunangannya berselingkuh."
-  },
-  {
-    id: "silent-love",
-    judul: "Silent Love",
-    tahun: 2020,
-    genre: "Drama, Romance",
-    sudahDitonton: false,
-    rating: 8.2,
-    gambar: "/Worksheet-p3/Silent Love.jpg",
-    alt: "Poster film drama romantis Silent Love",
-    ringkasan: "Menceritakan kisah cinta dua individu dengan tantangan komunikasi karena keterbatasan pendengaran."
-  }
-];
-
 console.log("\n--- LEMBAR D: Struktur Data & Array Methods ---");
 
 console.log("Koleksi Film Keseluruhan:");
@@ -102,3 +64,25 @@ console.log("Catatan (Aman):", catatanKritikus);
 const targetTambahanTeks = "2";
 const totalTargetTahunDepan = Number(targetTambahanTeks) + profilPengguna.detail.koleksi.totalKoleksi;
 console.log("Kalkulasi Target (Number conversion):", totalTargetTahunDepan);
+
+import { ambilProyek } from './api.js';
+import { render, tampilkanGalat, aturMemuat, inisialisasiFilter } from './dom.js';
+
+let koleksiFilm = [];
+
+async function muat() {
+  aturMemuat(true);
+  try {
+    const data = await ambilProyek();
+    koleksiFilm = data;
+    render(koleksiFilm);
+    inisialisasiFilter(koleksiFilm);
+  } catch (galat) {
+    tampilkanGalat('Data gagal dimuat. Periksa koneksi internet atau jalur data, lalu muat ulang halaman.');
+    console.error('Pesan log internal pengembang:', galat.message);
+  } finally {
+    aturMemuat(false);
+  }
+}
+
+muat();

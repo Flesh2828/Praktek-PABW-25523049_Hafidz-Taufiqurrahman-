@@ -1,9 +1,9 @@
-import { daftarFilm } from "./app.js";
-
-// --- LEMBAR A: Seleksi Elemen ---
 const wadah = document.querySelector("#daftar-film");
 const barisFilter = document.querySelector("#filter");
 const kosong = document.querySelector("#pesan-kosong");
+const muat = document.querySelector("#muat");
+const pesanJaringan = document.querySelector("#pesan-jaringan");
+
 const form = document.querySelector("#form-kontak");
 const inputNama = document.querySelector("#name");
 const inputEmail = document.querySelector("#email");
@@ -13,7 +13,6 @@ const errorEmail = document.querySelector("#error-email");
 const errorPesan = document.querySelector("#error-message");
 const tombolKirim = document.querySelector("#tombol-kirim");
 
-// --- LEMBAR B: Menyusun Kartu dari Data (createElement, textContent, append) ---
 function buatKartu(film) {
   const article = document.createElement("article");
   article.className = "kartu";
@@ -31,6 +30,7 @@ function buatKartu(film) {
   img.src = film.gambar;
   img.alt = film.alt;
   img.loading = "lazy";
+
   const figcaption = document.createElement("figcaption");
   figcaption.textContent = `Poster resmi ${film.judul}`;
   figure.append(img, figcaption);
@@ -53,103 +53,108 @@ function buatKartu(film) {
 
   divKaki.append(spanTahun, linkDetail);
   article.append(divIsi, divKaki);
-
   return article;
 }
 
-// --- LEMBAR D.1: Fungsi Render Tunggal ---
-function render(daftar) {
-  // 1. Kosongkan wadah lebih dulu
-  wadah.textContent = "";
+export function aturMemuat(sedangMemuat) {
+  if (muat) muat.hidden = !sedangMemuat;
+  if (sedangMemuat) {
+    if (pesanJaringan) pesanJaringan.hidden = true;
+    if (kosong) kosong.hidden = true;
+  }
+}
 
-  // 2. Periksa keadaan kosong
-  if (daftar.length === 0) {
+export function tampilkanGalat(pesan) {
+  if (pesanJaringan) {
+    pesanJaringan.textContent = pesan;
+    pesanJaringan.hidden = false;
+  }
+  wadah.textContent = "";
+}
+
+export function render(daftar) {
+  wadah.textContent = "";
+  if (pesanJaringan) pesanJaringan.hidden = true;
+
+  if (!daftar || daftar.length === 0) {
+    kosong.textContent = "Belum ada data.";
     kosong.hidden = false;
     return;
   }
 
-  // 3. Render elemen baru
   kosong.hidden = true;
   const fragment = document.createDocumentFragment();
   daftar.forEach((film) => fragment.append(buatKartu(film)));
   wadah.append(fragment);
 }
 
-// --- LEMBAR C: Event Delegation pada Tombol Filter ---
-function tandaiTombolAktif(tombolAktif) {
-  barisFilter.querySelectorAll("button").forEach((tombol) => {
-    tombol.classList.toggle("aktif", tombol === tombolAktif);
+export function inisialisasiFilter(dataFilmUtama) {
+  if (!barisFilter) return;
+
+  function tandaiTombolAktif(tombolAktif) {
+    barisFilter.querySelectorAll("button").forEach((tombol) => {
+      tombol.classList.toggle("aktif", tombol === tombolAktif);
+    });
+  }
+
+  barisFilter.addEventListener("click", (event) => {
+    const tombol = event.target.closest("button");
+    if (!tombol) return;
+
+    const genre = tombol.dataset.genre;
+    const terpilih = dataFilmUtama.filter((film) => {
+      if (genre === "Semua") return true;
+      if (genre === "Belum") return !film.sudahDitonton;
+      return film.genre.includes(genre);
+    });
+
+    tandaiTombolAktif(tombol);
+    render(terpilih);
   });
 }
 
-barisFilter.addEventListener("click", (event) => {
-  const tombol = event.target.closest("button");
-  if (!tombol) return;
-
-  const genre = tombol.dataset.genre;
-  const terpilih = daftarFilm.filter((film) => {
-    if (genre === "Semua") return true;
-    if (genre === "Belum") return !film.sudahDitonton;
-    return film.genre.includes(genre);
-  });
-
-  tandaiTombolAktif(tombol);
-  render(terpilih);
-});
-
-// --- LEMBAR D.2: Validasi Form Tanpa Reload ---
+// Validasi formulir kontak
 function validasiForm() {
   const namaValid = inputNama.value.trim().length >= 3;
   const emailValid = inputEmail.value.trim().includes("@") && inputEmail.value.trim().includes(".");
   const pesanValid = inputPesan.value.trim().length >= 10;
 
-  // Validasi Nama
   if (!namaValid && inputNama.value.trim() !== "") {
     errorNama.textContent = "Nama minimal 3 karakter tanpa spasi di tepi.";
     errorNama.style.display = "block";
-    inputNama.setAttribute("aria-invalid", "true");
   } else {
     errorNama.textContent = "";
     errorNama.style.display = "none";
-    inputNama.removeAttribute("aria-invalid");
   }
 
-  // Validasi Email
   if (!emailValid && inputEmail.value.trim() !== "") {
     errorEmail.textContent = "Format email tidak valid (harus ada @ dan domain).";
     errorEmail.style.display = "block";
-    inputEmail.setAttribute("aria-invalid", "true");
   } else {
     errorEmail.textContent = "";
     errorEmail.style.display = "none";
-    inputEmail.removeAttribute("aria-invalid");
   }
 
-  // Validasi Pesan
   if (!pesanValid && inputPesan.value.trim() !== "") {
     errorPesan.textContent = "Pesan minimal 10 karakter.";
     errorPesan.style.display = "block";
-    inputPesan.setAttribute("aria-invalid", "true");
   } else {
     errorPesan.textContent = "";
     errorPesan.style.display = "none";
-    inputPesan.removeAttribute("aria-invalid");
   }
 
-  // Kunci tombol kirim sampai seluruh kolom layak
   tombolKirim.disabled = !(namaValid && emailValid && pesanValid);
 }
 
-inputNama.addEventListener("input", validasiForm);
-inputEmail.addEventListener("input", validasiForm);
-inputPesan.addEventListener("input", validasiForm);
+if (form) {
+  inputNama.addEventListener("input", validasiForm);
+  inputEmail.addEventListener("input", validasiForm);
+  inputPesan.addEventListener("input", validasiForm);
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Mencegah reload halaman
-  alert("Pesan rewatch berhasil dikirim!");
-  form.reset();
-  tombolKirim.disabled = true;
-});
-
-// Render awal saat halaman dimuat
-render(daftarFilm);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    alert("Pesan rewatch berhasil dikirim!");
+    form.reset();
+    tombolKirim.disabled = true;
+  });
+}
