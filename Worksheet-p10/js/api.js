@@ -1,5 +1,5 @@
 // Alamat relatif lokal (ganti ke raw.githubusercontent.com saat uji D.5)
-const ALAMAT = 'https://raw.githubusercontent.com/Flesh2828/Praktek-PABW-25523049_Hafidz-Taufiqurrahman-/main/Worksheet-p10/data/proyek.json';
+const ALAMAT = 'data/proyek.json';
 
 export async function ambilProyek() {
   try {
