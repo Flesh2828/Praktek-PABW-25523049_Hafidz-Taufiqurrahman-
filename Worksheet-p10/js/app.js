@@ -1,3 +1,6 @@
+import { ambilProyek } from './api.js';
+import { render, tampilkanGalat, aturMemuat, inisialisasiFilter } from './dom.js';
+
 const profilPengguna = {
   nama: "Hafidz Taufiqurrahman",
   nim: "25523049",
@@ -12,61 +15,12 @@ const profilPengguna = {
   }
 };
 
-const kuotaFilmMinimal = 3;     
-let genreTerpilih = "Semua";     
-
-const ringkasanProfil = `Kurator: ${profilPengguna.nama} (${profilPengguna.nim}) — ${profilPengguna.peran}`;
-const batasDurasiMenit = profilPengguna.detail?.durasiMaksimal ?? 120; // Default jika undefined
+const ringkasanProfil = `Kurator: ${profilPengguna.nama} (${profilPengguna.nim}) | ${profilPengguna.peran}`;
+const batasDurasiMenit = profilPengguna.detail?.durasiMaksimal ?? 120;
 
 console.log("--- LEMBAR B: Identitas & Variabel ---");
 console.log(ringkasanProfil);
 console.log(`Batas Durasi Default: ${batasDurasiMenit} menit`);
-console.log(`Tipe data profilPengguna.nama: ${typeof profilPengguna.nama}`);
-console.log(`Tipe data kuotaFilmMinimal: ${typeof kuotaFilmMinimal}`);
-
-
-function buatPerkenalan({ nama, peran }) {
-  return `${nama} — ${peran}`;
-}
-
-const formatGenre = (daftarGenre) => daftarGenre.join(" · ");
-
-console.log("\n--- LEMBAR C: Dua Fungsi Murni ---");
-console.log("Hasil buatPerkenalan:", buatPerkenalan(profilPengguna));
-console.log("Hasil formatGenre:", formatGenre(profilPengguna.genreFavorit));
-
-console.log("\n--- LEMBAR D: Struktur Data & Array Methods ---");
-
-console.log("Koleksi Film Keseluruhan:");
-console.table(daftarFilm);
-
-const filmSudahDitonton = daftarFilm.filter((film) => film.sudahDitonton);
-console.log("Film Selesai Rewatch (filter):");
-console.table(filmSudahDitonton);
-
-const filmDicari = daftarFilm.find((film) => film.judul === "Silent Voice");
-console.log("Pencarian Film Spesifik (find):", filmDicari);
-
-const ringkasanLabelFilm = daftarFilm.map(
-  (film) => `${film.judul} (${film.tahun}) [${film.genre}] — Status: ${film.sudahDitonton ? "Selesai" : "Belum"}`
-);
-console.log("Ringkasan Label Film (map):", ringkasanLabelFilm);
-
-const filmUrutTahun = [...daftarFilm].sort((a, b) => b.tahun - a.tahun);
-console.log("Film Terurut Tahun Terbaru:", filmUrutTahun);
-console.log("Apakah data asli tidak berubah?:", daftarFilm[0].judul === "Silent Voice");
-
-console.log("\n--- LEMBAR E: Penanganan Kasus Galat ---");
-
-const catatanKritikus = profilPengguna.review?.catatan ?? "Belum ada catatan khusus";
-console.log("Catatan (Aman):", catatanKritikus);
-
-const targetTambahanTeks = "2";
-const totalTargetTahunDepan = Number(targetTambahanTeks) + profilPengguna.detail.koleksi.totalKoleksi;
-console.log("Kalkulasi Target (Number conversion):", totalTargetTahunDepan);
-
-import { ambilProyek } from './api.js';
-import { render, tampilkanGalat, aturMemuat, inisialisasiFilter } from './dom.js';
 
 let koleksiFilm = [];
 
