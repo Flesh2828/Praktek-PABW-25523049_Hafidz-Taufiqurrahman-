@@ -65,12 +65,15 @@
       </aside>
 
       <section class="utama">
-        <!-- Baris Tombol Filter -->
-        <div id="filter" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
-          <button type="button" data-genre="Semua" class="tombol-filter aktif">Semua</button>
-          <button type="button" data-genre="Drama" class="tombol-filter">Drama</button>
-          <button type="button" data-genre="Comedy" class="tombol-filter">Comedy</button>
-          <button type="button" data-genre="Belum" class="tombol-filter">Belum Ditonton</button>
+        <!-- Baris Tombol Filter & Kontrol Penyimpanan -->
+        <div id="filter-wrapper" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+          <div id="filter" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+            <button type="button" data-genre="Semua" class="tombol-filter aktif">Semua</button>
+            <button type="button" data-genre="Drama" class="tombol-filter">Drama</button>
+            <button type="button" data-genre="Comedy" class="tombol-filter">Comedy</button>
+            <button type="button" data-genre="Belum" class="tombol-filter">Belum Ditonton</button>
+          </div>
+          <button type="button" id="atur-ulang" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-fg); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); cursor: pointer;">Atur Ulang</button>
         </div>
         <p id="muat" hidden style="color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-3);">
           Memuat data film...

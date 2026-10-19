@@ -1,42 +1,23 @@
 import { ambilProyek } from './api.js';
-import { render, tampilkanGalat, aturMemuat, inisialisasiFilter } from './dom.js';
+import { state, setDaftarProyek, pulihkan, muat } from './state.js';
+import { render, tampilkanGalat, aturMemuat } from './dom.js';
+import { pasangPendengar } from './events.js';
 
-const profilPengguna = {
-  nama: "Hafidz Taufiqurrahman",
-  nim: "25523049",
-  peran: "Penyusun Kurasi Annual Movie Rewatch",
-  genreFavorit: ["Drama", "Romance", "Anime", "Comedy"],
-  detail: {
-    status: "Aktif",
-    targetTahun: 2026,
-    koleksi: {
-      totalKoleksi: 3
-    }
-  }
-};
-
-const ringkasanProfil = `Kurator: ${profilPengguna.nama} (${profilPengguna.nim}) | ${profilPengguna.peran}`;
-const batasDurasiMenit = profilPengguna.detail?.durasiMaksimal ?? 120;
-
-console.log("--- LEMBAR B: Identitas & Variabel ---");
-console.log(ringkasanProfil);
-console.log(`Batas Durasi Default: ${batasDurasiMenit} menit`);
-
-let koleksiFilm = [];
-
-async function muat() {
+async function mulai() {
+  pulihkan(muat());
+  pasangPendengar();
   aturMemuat(true);
+
   try {
     const data = await ambilProyek();
-    koleksiFilm = data;
-    render(koleksiFilm);
-    inisialisasiFilter(koleksiFilm);
+    setDaftarProyek(data);
+    render(state); // Menggambar kartu film dari state
   } catch (galat) {
-    tampilkanGalat('Data gagal dimuat. Periksa koneksi internet atau jalur data, lalu muat ulang halaman.');
-    console.error('Pesan log internal pengembang:', galat.message);
+    tampilkanGalat('Data gagal dimuat. Periksa koneksi internet atau jalur data.');
+    console.error('Galat inisialisasi:', galat);
   } finally {
     aturMemuat(false);
   }
 }
 
-muat();
+mulai();

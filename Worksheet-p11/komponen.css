@@ -167,3 +167,11 @@ button, input[type="submit"] {
 button:hover, input[type="submit"]:hover {
   opacity: 0.9;
 }
+.tombol-favorit {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #f59e0b;
+  padding: 0 var(--space-1);
+}

@@ -1,19 +1,12 @@
+import { saring } from './data.js';
+
 const wadah = document.querySelector("#daftar-film");
 const barisFilter = document.querySelector("#filter");
 const kosong = document.querySelector("#pesan-kosong");
-const muat = document.querySelector("#muat");
+const muatEl = document.querySelector("#muat");
 const pesanJaringan = document.querySelector("#pesan-jaringan");
 
-const form = document.querySelector("#form-kontak");
-const inputNama = document.querySelector("#name");
-const inputEmail = document.querySelector("#email");
-const inputPesan = document.querySelector("#message");
-const errorNama = document.querySelector("#error-name");
-const errorEmail = document.querySelector("#error-email");
-const errorPesan = document.querySelector("#error-message");
-const tombolKirim = document.querySelector("#tombol-kirim");
-
-function buatKartu(film) {
+export function buatKartu(film, daftarFavorit = []) {
   const article = document.createElement("article");
   article.className = "kartu";
   article.id = film.id;
@@ -28,7 +21,7 @@ function buatKartu(film) {
   const figure = document.createElement("figure");
   const img = document.createElement("img");
   img.src = film.gambar;
-  img.alt = film.alt;
+  img.alt = film.alt || film.judul;
   img.loading = "lazy";
 
   const figcaption = document.createElement("figcaption");
@@ -37,7 +30,6 @@ function buatKartu(film) {
 
   const p = document.createElement("p");
   p.textContent = film.ringkasan;
-
   divIsi.append(h2, figure, p);
 
   const divKaki = document.createElement("div");
@@ -51,13 +43,33 @@ function buatKartu(film) {
   linkDetail.className = "tombol-detail";
   linkDetail.textContent = "Detail";
 
-  divKaki.append(spanTahun, linkDetail);
+  const isFav = daftarFavorit.includes(film.id);
+  const tombolFav = document.createElement("button");
+  tombolFav.type = "button";
+  tombolFav.className = "favorit";
+  tombolFav.dataset.id = film.id;
+  tombolFav.textContent = isFav ? "★" : "☆";
+  tombolFav.style.fontSize = "1.2rem";
+  tombolFav.style.background = "none";
+  tombolFav.style.border = "none";
+  tombolFav.style.cursor = "pointer";
+  tombolFav.style.color = isFav ? "#eab308" : "inherit";
+
+  divKaki.append(spanTahun, linkDetail, tombolFav);
   article.append(divIsi, divKaki);
+
   return article;
 }
 
+export function tandaiTombolAktif(kategoriAktif) {
+  if (!barisFilter) return;
+  barisFilter.querySelectorAll("button").forEach((tombol) => {
+    tombol.classList.toggle("aktif", tombol.dataset.genre === kategoriAktif);
+  });
+}
+
 export function aturMemuat(sedangMemuat) {
-  if (muat) muat.hidden = !sedangMemuat;
+  if (muatEl) muatEl.hidden = !sedangMemuat;
   if (sedangMemuat) {
     if (pesanJaringan) pesanJaringan.hidden = true;
     if (kosong) kosong.hidden = true;
@@ -69,92 +81,30 @@ export function tampilkanGalat(pesan) {
     pesanJaringan.textContent = pesan;
     pesanJaringan.hidden = false;
   }
-  wadah.textContent = "";
+  if (wadah) wadah.textContent = "";
 }
 
-export function render(daftar) {
+export function render(state) {
+  if (!wadah) return;
   wadah.textContent = "";
+
   if (pesanJaringan) pesanJaringan.hidden = true;
 
-  if (!daftar || daftar.length === 0) {
-    kosong.textContent = "Belum ada data.";
-    kosong.hidden = false;
+  const daftarTampil = saring(state.daftarProyek, state.kategoriAktif);
+
+  tandaiTombolAktif(state.kategoriAktif);
+
+  if (!daftarTampil || daftarTampil.length === 0) {
+    if (kosong) {
+      kosong.textContent = "Tidak ada film dalam kategori ini.";
+      kosong.hidden = false;
+    }
     return;
   }
 
-  kosong.hidden = true;
+  if (kosong) kosong.hidden = true;
+
   const fragment = document.createDocumentFragment();
-  daftar.forEach((film) => fragment.append(buatKartu(film)));
+  daftarTampil.forEach((film) => fragment.append(buatKartu(film, state.favorit)));
   wadah.append(fragment);
-}
-
-export function inisialisasiFilter(dataFilmUtama) {
-  if (!barisFilter) return;
-
-  function tandaiTombolAktif(tombolAktif) {
-    barisFilter.querySelectorAll("button").forEach((tombol) => {
-      tombol.classList.toggle("aktif", tombol === tombolAktif);
-    });
-  }
-
-  barisFilter.addEventListener("click", (event) => {
-    const tombol = event.target.closest("button");
-    if (!tombol) return;
-
-    const genre = tombol.dataset.genre;
-    const terpilih = dataFilmUtama.filter((film) => {
-      if (genre === "Semua") return true;
-      if (genre === "Belum") return !film.sudahDitonton;
-      return film.genre.includes(genre);
-    });
-
-    tandaiTombolAktif(tombol);
-    render(terpilih);
-  });
-}
-
-// Validasi formulir kontak
-function validasiForm() {
-  const namaValid = inputNama.value.trim().length >= 3;
-  const emailValid = inputEmail.value.trim().includes("@") && inputEmail.value.trim().includes(".");
-  const pesanValid = inputPesan.value.trim().length >= 10;
-
-  if (!namaValid && inputNama.value.trim() !== "") {
-    errorNama.textContent = "Nama minimal 3 karakter tanpa spasi di tepi.";
-    errorNama.style.display = "block";
-  } else {
-    errorNama.textContent = "";
-    errorNama.style.display = "none";
-  }
-
-  if (!emailValid && inputEmail.value.trim() !== "") {
-    errorEmail.textContent = "Format email tidak valid (harus ada @ dan domain).";
-    errorEmail.style.display = "block";
-  } else {
-    errorEmail.textContent = "";
-    errorEmail.style.display = "none";
-  }
-
-  if (!pesanValid && inputPesan.value.trim() !== "") {
-    errorPesan.textContent = "Pesan minimal 10 karakter.";
-    errorPesan.style.display = "block";
-  } else {
-    errorPesan.textContent = "";
-    errorPesan.style.display = "none";
-  }
-
-  tombolKirim.disabled = !(namaValid && emailValid && pesanValid);
-}
-
-if (form) {
-  inputNama.addEventListener("input", validasiForm);
-  inputEmail.addEventListener("input", validasiForm);
-  inputPesan.addEventListener("input", validasiForm);
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    alert("Pesan rewatch berhasil dikirim!");
-    form.reset();
-    tombolKirim.disabled = true;
-  });
 }
