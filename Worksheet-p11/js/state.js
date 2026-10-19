@@ -42,7 +42,6 @@ export function pulihkan(isi) {
   state.favorit = Array.isArray(isi.favorit) ? isi.favorit : [];
 }
 
-// Fungsi mutasi murni state
 export function setDaftarProyek(daftar) {
   state.daftarProyek = daftar;
 }

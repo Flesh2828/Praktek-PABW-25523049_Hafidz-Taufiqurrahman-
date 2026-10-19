@@ -46,14 +46,9 @@ export function buatKartu(film, daftarFavorit = []) {
   const isFav = daftarFavorit.includes(film.id);
   const tombolFav = document.createElement("button");
   tombolFav.type = "button";
-  tombolFav.className = "favorit";
+  tombolFav.className = "favorit tombol-favorit";
   tombolFav.dataset.id = film.id;
   tombolFav.textContent = isFav ? "★" : "☆";
-  tombolFav.style.fontSize = "1.2rem";
-  tombolFav.style.background = "none";
-  tombolFav.style.border = "none";
-  tombolFav.style.cursor = "pointer";
-  tombolFav.style.color = isFav ? "#eab308" : "inherit";
 
   divKaki.append(spanTahun, linkDetail, tombolFav);
   article.append(divIsi, divKaki);

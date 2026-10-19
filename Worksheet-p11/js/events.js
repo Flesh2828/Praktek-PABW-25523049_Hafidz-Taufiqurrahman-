@@ -34,7 +34,7 @@ export function pasangPendengar() {
     });
   }
 
-  // Atur Ulang
+  // Tombol Atur Ulang
   if (tombolAturUlang) {
     tombolAturUlang.addEventListener("click", () => {
       resetState();

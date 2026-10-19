@@ -11,7 +11,7 @@ async function mulai() {
   try {
     const data = await ambilProyek();
     setDaftarProyek(data);
-    render(state); // Menggambar kartu film dari state
+    render(state);
   } catch (galat) {
     tampilkanGalat('Data gagal dimuat. Periksa koneksi internet atau jalur data.');
     console.error('Galat inisialisasi:', galat);
