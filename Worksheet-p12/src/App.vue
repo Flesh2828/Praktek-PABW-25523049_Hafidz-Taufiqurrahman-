@@ -1,7 +1,106 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld />
+  <input type="checkbox" id="tema" class="pengalih-tema">
+  <div class="page">
+    <!-- Baris 1: Header / Navbar -->
+    <header class="header">
+      <nav class="navbar">
+        <h1>Annual Movie Rewatch</h1>
+        <ul class="nav-links">
+          <li><a href="#silent-voice">Silent Voice</a></li>
+          <li><a href="#marry-me">Marry me!</a></li>
+          <li><a href="#silent-love">Silent Love</a></li>
+        </ul>
+        <label for="tema" class="tombol-tema">Ganti Tema</label>
+      </nav>
+    </header>
+
+    <main class="isi">
+      <aside class="sisi">
+        <section class="section-sidebar">
+          <h2>Data Film</h2>
+          <table>
+            <caption>Daftar Film Rewatch</caption>
+            <thead>
+              <tr>
+                <th scope="col">Judul</th>
+                <th scope="col">Tahun</th>
+                <th scope="col">Genre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Silent Voice</td>
+                <td>2016</td>
+                <td>Drama, Romance</td>
+              </tr>
+              <tr>
+                <td>Marry Me!</td>
+                <td>2022</td>
+                <td>Comedy, Romance</td>
+              </tr>
+              <tr>
+                <td>Silent Love</td>
+                <td>2020</td>
+                <td>Drama, Romance</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </aside>
+
+      <section class="utama">
+        <!-- Baris Tombol Filter & Kontrol Penyimpanan -->
+        <div id="filter-wrapper" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+          <div id="filter" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+            <button type="button" data-genre="Semua" class="tombol-filter aktif">Semua</button>
+            <button type="button" data-genre="Drama" class="tombol-filter">Drama</button>
+            <button type="button" data-genre="Comedy" class="tombol-filter">Comedy</button>
+            <button type="button" data-genre="Belum" class="tombol-filter">Belum Ditonton</button>
+          </div>
+          <button type="button" id="atur-ulang" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-fg); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); cursor: pointer;">Atur Ulang</button>
+        </div>
+
+        <p id="muat" hidden style="color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-3);">
+          Memuat data film...
+        </p>
+        <p id="pesan-jaringan" hidden style="color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+        </p>
+
+        <!-- Wadah Tunggal Galeri -->
+        <div class="galeri" id="daftar-film"></div>
+
+        <!-- Pesan Keadaan Kosong -->
+        <p id="pesan-kosong" hidden style="color: var(--color-border); font-style: italic; margin-top: var(--space-3);">
+          Tidak ada film dalam kategori ini.
+        </p>
+
+        <!-- Formulir Kontak -->
+        <section class="kontak">
+          <h2>Formulir Kontak</h2>
+          <form id="form-kontak" novalidate>
+            <div class="form-kolom">
+              <label for="name">Nama:</label>
+              <input type="text" id="name" name="name" required>
+              <span class="pesan-galat" id="error-name" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-kolom">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+              <span class="pesan-galat" id="error-email" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-kolom">
+              <label for="message">Pesan:</label>
+              <textarea id="message" name="message" required></textarea>
+              <span class="pesan-galat" id="error-message" style="display: none; color: red; font-size: 0.8rem;"></span>
+            </div>
+            <button type="submit" id="tombol-kirim" disabled>Kirim</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <footer class="kaki">
+      <p>Nama: Hafidz Taufiqurrahman &nbsp; NIM: 25523049 &nbsp; Tahun: 2026</p>
+    </footer>
+  </div>
 </template>

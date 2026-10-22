@@ -1,0 +1,35 @@
+[
+  {
+    "id": "silent-voice",
+    "judul": "Silent Voice",
+    "tahun": 2016,
+    "genre": "Drama, Romance",
+    "sudahDitonton": true,
+    "rating": 9.0,
+    "gambar": "/Worksheet-p3/A SILENT VOICE.jpg",
+    "alt": "Poster film anime Silent Voice",
+    "ringkasan": "Cerita tentang Shoya Ishida yang menindas gadis tuli Shoko Nishimiya saat SD, dan berusaha menebus kesalahannya saat SMA."
+  },
+  {
+    "id": "marry-me",
+    "judul": "Marry me!",
+    "tahun": 2022,
+    "genre": "Comedy, Romance",
+    "sudahDitonton": true,
+    "rating": 7.5,
+    "gambar": "/Worksheet-p3/Marry Me!.jpg",
+    "alt": "Poster film komedi romantis Marry Me",
+    "ringkasan": "mengisahkan tentang pernikahan kontrak antara seorang perempuan NEET (pengangguran yang tidak sedang sekolah atau pelatihan) dan seorang pegawai negeri sipil melalui program pemerintah"
+  },
+  {
+    "id": "silent-love",
+    "judul": "Silent Love",
+    "tahun": 2020,
+    "genre": "Drama, Romance",
+    "sudahDitonton": false,
+    "rating": 8.2,
+    "gambar": "/Worksheet-p3/Silent Love.jpg",
+    "alt": "Poster film drama romantis Silent Love",
+    "ringkasan": "Menceritakan kisah cinta dua individu dengan tantangan komunikasi karena keterbatasan pendengaran."
+  }
+]
