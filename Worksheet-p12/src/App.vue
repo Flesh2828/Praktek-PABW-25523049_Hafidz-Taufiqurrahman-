@@ -1,18 +1,35 @@
+<script setup>
+import { onMounted, watch } from 'vue'
+import { state, simpan, muat, pulihkan, setDaftarProyek } from './state.js'
+import { ambilProyek } from './api.js'
+import { profil } from './data.js'
+
+import KepalaProfil from './components/KepalaProfil.vue'
+import TombolFilter from './components/TombolFilter.vue'
+import DaftarProyek from './components/DaftarProyek.vue'
+import FormKontak from './components/FormKontak.vue'
+
+onMounted(async () => {
+  pulihkan(muat())
+  try {
+    const data = await ambilProyek()
+    setDaftarProyek(data)
+  } catch (galat) {
+    state.galat = 'Data gagal dimuat. Periksa koneksi internet atau jalur data.'
+  } finally {
+    state.memuat = false
+  }
+})
+
+// Simpan otomatis ke localStorage saat state berubah
+watch(state, (nilai) => simpan(nilai), { deep: true })
+</script>
+
 <template>
   <input type="checkbox" id="tema" class="pengalih-tema">
   <div class="page">
-    <!-- Baris 1: Header / Navbar -->
-    <header class="header">
-      <nav class="navbar">
-        <h1>Annual Movie Rewatch</h1>
-        <ul class="nav-links">
-          <li><a href="#silent-voice">Silent Voice</a></li>
-          <li><a href="#marry-me">Marry me!</a></li>
-          <li><a href="#silent-love">Silent Love</a></li>
-        </ul>
-        <label for="tema" class="tombol-tema">Ganti Tema</label>
-      </nav>
-    </header>
+    <!-- Komponen 1: KepalaProfil menerima data profil lewat props -->
+    <KepalaProfil :profil="profil" />
 
     <main class="isi">
       <aside class="sisi">
@@ -49,58 +66,19 @@
       </aside>
 
       <section class="utama">
-        <!-- Baris Tombol Filter & Kontrol Penyimpanan -->
-        <div id="filter-wrapper" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
-          <div id="filter" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-            <button type="button" data-genre="Semua" class="tombol-filter aktif">Semua</button>
-            <button type="button" data-genre="Drama" class="tombol-filter">Drama</button>
-            <button type="button" data-genre="Comedy" class="tombol-filter">Comedy</button>
-            <button type="button" data-genre="Belum" class="tombol-filter">Belum Ditonton</button>
-          </div>
-          <button type="button" id="atur-ulang" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-fg); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); cursor: pointer;">Atur Ulang</button>
-        </div>
+        <!-- Komponen 2: Filter Kategori & Atur Ulang -->
+        <TombolFilter />
 
-        <p id="muat" hidden style="color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-3);">
-          Memuat data film...
-        </p>
-        <p id="pesan-jaringan" hidden style="color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
-        </p>
+        <!-- Komponen 3: Daftar Kartu & Status -->
+        <DaftarProyek />
 
-        <!-- Wadah Tunggal Galeri -->
-        <div class="galeri" id="daftar-film"></div>
-
-        <!-- Pesan Keadaan Kosong -->
-        <p id="pesan-kosong" hidden style="color: var(--color-border); font-style: italic; margin-top: var(--space-3);">
-          Tidak ada film dalam kategori ini.
-        </p>
-
-        <!-- Formulir Kontak -->
-        <section class="kontak">
-          <h2>Formulir Kontak</h2>
-          <form id="form-kontak" novalidate>
-            <div class="form-kolom">
-              <label for="name">Nama:</label>
-              <input type="text" id="name" name="name" required>
-              <span class="pesan-galat" id="error-name" style="display: none; color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-kolom">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
-              <span class="pesan-galat" id="error-email" style="display: none; color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-kolom">
-              <label for="message">Pesan:</label>
-              <textarea id="message" name="message" required></textarea>
-              <span class="pesan-galat" id="error-message" style="display: none; color: red; font-size: 0.8rem;"></span>
-            </div>
-            <button type="submit" id="tombol-kirim" disabled>Kirim</button>
-          </form>
-        </section>
+        <!-- Komponen 4: Formulir Kontak -->
+        <FormKontak />
       </section>
     </main>
 
     <footer class="kaki">
-      <p>Nama: Hafidz Taufiqurrahman &nbsp; NIM: 25523049 &nbsp; Tahun: 2026</p>
+      <p>Nama: {{ profil.nama }} &nbsp; NIM: {{ profil.nim }} &nbsp; Tahun: 2026</p>
     </footer>
   </div>
 </template>
